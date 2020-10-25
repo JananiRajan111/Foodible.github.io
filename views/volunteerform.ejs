@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Foodible</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="C:\Users\soumyasarang\.vscode\Food Website\public\stylesheet.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <style>
+          .jumbotron {
+            margin-top:50px;
+            height: 400px;
+            text-align: center;
+            color: white;
+            background-color: #990000;
+          }
+          .content{
+            margin: 30px;
+          }
+          .col-4{
+            outline-color: #990000;
+            outline-width: 3px;
+            outline-style: solid;
+            padding-top: 20px;
+            background-color: #ffcccc;
+            align-items: center;
+            text-align: center;
+          }
+          label {
+            display: flex;
+          }
+          #addrow {
+            margin-top: 10px;
+          }
+
+          label {
+            display: flex;
+          }
+          #addrow {
+            margin-top: 10px;
+          }
+          .visible {
+            visibility: visible;
+          }
+          .invisible {
+            visibility: hidden;
+          }
+
+        </style>
+    </head>
+    <body>
+        <!--ALL NAVBAR CODE-->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Foodible</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/restaurantlist">All Restaurants </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pantrylist">All Food Pantries</a>
+                  </li>
+                <li class="nav-item dropdown active">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Get Involved <span class="sr-only">(current)</span>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/addrestaurant">I'm a Restaurant Owner <span class="sr-only">(current)</span> </a>
+                    <a class="dropdown-item" href="/addpantry">I manage a Food Pantry </a>
+                    <a class="dropdown-item active" href="/volunteer">I want to Volunteer <span class="sr-only">(current)</span> </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!--END OF NAVBAR CODE-->
+          <!--HEADER-->
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">Foodible</h1>
+              <p class="lead">Ending hunger by eliminating food waste</p>
+            </div>
+          </div>
+          <!--END OF HEADER-->
+          
+          <!--START MAIN CONTENT-->
+          <div class="content">
+              <h2>Register to volunteer!</h2>
+              <br></br>
+              <!--Start of form-->
+              <form name='frmVolunteer' method="POST" onSubmit="return submitForm();">
+                <input id="requestState" name="requestState" type="hidden" value="volunteer" />
+                <!--Personal Information-->
+            <%
+                var states = [
+                'NJ',
+                'NY',
+                'PA',
+                'DE',
+                'MD',
+                'VA'
+                ];
+                var infoAvailable = true;
+                if (locals.volunteer == null ) {
+                  infoAvailable = false;
+                  locals.volunteer = {
+                    ame: '',
+                    email: '',
+                    address : '',
+                    volunteercity: '',
+                    state: '',
+                    zip: ''
+                  }
+                }
+            %>
+
+            <div class="visible" id="infodiv">
+                <h4>Step 1: Fill out your personal information</h4>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputName">Name</label>
+                    <input name="name" type="text" class="form-control" id="inputName" placeholder="John Doe" value="<%=volunteer.name%>">
+                </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail">Email</label>
+                    <input name="email" type="email" class="form-control" id="inputEmail" placeholder="example@email.com" value="<%=volunteer.email%>">
+                </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputAddress">Address</label>
+                  <input name="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" value="<%=volunteer.address%>">
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputCity">City</label>
+                    <input name="volunteercity" type="text" class="form-control" id="inputCity" value="<%=volunteer.volunteercity%>">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputState">State</label>
+                    <select name="state" id="inputState" class="form-control">
+                      <option selected>Choose...</option>
+                      <% for ( var i=0; i < states.length; i++) {
+                        var sel = "";
+                        if (volunteer.state == states[i] ) {
+                          sel = " selected";
+                        }
+                      %>
+                      <option value='<%=states[i]%>'<%=sel%>><%=states[i]%></option>
+                      <% } %>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="inputZip">Zip</label>
+                    <input name="zip" type="text" class="form-control" id="inputZip" value="<%=volunteer.zip%>">
+                  </div>
+                </div>
+              </div>
+                
+              <!--Restaurant-->
+              <% if ( locals.restaurants != null ) { %>
+              <div class="visible" id="restaurantdiv">
+                <h4>Step 2: Pick a Restaurant</h4>
+                <div class="form-group">
+                  <p>We have compiled a list of restaurants near you. Please select the one that you want to make your delivery from.</p>
+                  <% for(var i = 0; i < restaurants.length; i++) {%>
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-body">
+                      <h5 class="card-title"><input type="radio" name="restaurantradio" value="<%= restaurants[i].name %>">
+                        &nbsp; <%= restaurants[i].name %></h5>
+                      <!-- Button to Open the Modal -->
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target=#<%= restaurants[i].name %>>
+                        Details
+                      </button>
+                    
+                      <!-- The Modal -->
+                      <div class="modal" id= <%= restaurants[i].name %>>
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <h4 class="modal-title"><%= restaurants[i].name %></h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                            <ul>
+                              <li>Email: <span><%= restaurants[i].email %></span></li>
+                              <li>Address: <span><%= restaurants[i].address %></span>, <span><%= restaurants[i].city %></span> <span><%= restaurants[i].state %></span>, <span><%= restaurants[i].zip %></span></li>
+                              <li>Items Available for Donation:
+                                <ul>
+                                  <% for(var j = 0; j < (restaurants[i].item).length; j++) {%>
+                                    <li><%= restaurants[i].item[j] %></li> 
+                                  <% } %>
+                                </ul>
+                              </li>
+                            </ul>
+                            </div>
+                            
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  <% } %>
+                </div>
+              </div>
+              <%}%>
+
+              <!--Food Pantry-->
+              <% if ( locals.pantries != null ) { %>
+              <div class="visible" id="foodpantrydiv">
+                <h4>Step 3: Pick a Pantry</h4>
+                <div class="form-group">
+                  <p>We have compiled a list of food pantries near you. Please select the one that you want to make your delivery from.</p>
+                  <% for(var i = 0; i < pantries.length; i++) {%>
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-body">
+                      <h5 class="card-title"><input type="radio" name="pantryradio" value="<%= pantries[i].name %>">
+                        &nbsp; <%= pantries[i].name %></h2>
+                      <!-- Button to Open the Modal -->
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target= #<%= pantries[i].name %> >
+                        Details
+                      </button>
+                    
+                      <!-- The Modal -->
+                      <div class="modal" id= <%= pantries[i].name %>>
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <h4 class="modal-title"><%= pantries[i].name %></h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                            <ul>
+                              <li>Email: <span><%= pantries[i].email %></span></li>
+                              <li>Address: <span><%= pantries[i].address %></span>, <span><%= pantries[i].city %></span> <span><%= pantries[i].state %></span>, <span><%= pantries[i].zip %></span></li>
+                              <li>Items Needed:
+                                <ul>
+                                  <% for(var j = 0; j < (pantries[i].item).length; j++) {%>
+                                    <li><%= pantries[i].item[j] %></li> 
+                                  <% } %>
+                                </ul>
+                              </li>
+                            </ul>
+                            </div>
+                            
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  <% } %>
+                </div>
+                <%}%>
+              </div>            
+              <!--Common Items and Time-->
+              <div id="itemdiv">
+                <h4>Step 4: Select pickup and delivery times</h4>
+                <div class="form-group">
+                  <p>Pick a date and time to pick up your items from your chosen restaurant: </p>
+                  <input name="pickupDate" type="date">
+                  <input name="pickupTime" type="time">
+                </div>
+                <div class="form-group">
+                  <p>Pick a date and time to deliver your items to your chosen food pantry: </p>
+                  <input name="deliveryDate" type="date">
+                  <input name="deliveryTime" type="time">
+                </div>
+                <br></br>
+                <p>You will be redirected to the Home page. Look out for an email in your inbox confirming your registration information!Thank you for joining the fight to end hunger and food waste!</p>
+              </div>
+                <!--End of form-->
+                <button id='btnSubmit' type="submit" class="btn btn-danger" >Submit</button>
+              </form>
+          </div>
+          <!--END MAIN CONTENT-->
+
+    </body>
+    <script>
+      //FORM CODE
+      var infoAvailable = ('true' == '<%=infoAvailable%>');
+      $( document ).ready(function() {
+        if ( !infoAvailable ) {
+          $('#btnSubmit').html("Next");
+          $('#itemdiv').css("display", "none");
+        } else {
+          $('#itemdiv').css("display", "block");
+        }
+      });      
+      function submitForm() {
+        var frm = document.frmVolunteer;
+
+        if (infoAvailable ) {
+          frm.requestState.value = "register";
+          frm.action="/registervolunteer";
+        } else {
+          frm.requestState.value = "volunteer";
+          frm.action = "/volunteerrestaurants"; 
+        }
+        frm.submit();
+        return false;
+      }
+
+      function next1() {
+        var element = document.getElementById("infodiv");
+        $(element).find('input').each(function () {
+          $(this).attr('disabled', true);
+        });
+        $(element).find('select').each(function () {
+          $(this).attr('disabled', true);
+        });
+        element = document.getElementById("restaurantdiv");
+        element.classList.replace("invisible", "visible");
+      }
+
+      function next2() {
+        var element = document.getElementById("restaurantdiv");
+        $(element).find('input').each(function () {
+          $(this).attr('disabled', true);
+        });
+        $(element).find('select').each(function () {
+          $(this).attr('disabled', true);
+        });
+        element = document.getElementById("foodpantrydiv");
+        element.classList.replace("invisible", "visible");
+      }
+
+      function next3() {
+        var element = document.getElementById("foodpantrydiv");
+        $(element).find('input').each(function () {
+          $(this).attr('disabled', true);
+        });
+        $(element).find('select').each(function () {
+          $(this).attr('disabled', true);
+        });
+        element = document.getElementById("itemdiv");
+        element.classList.replace("invisible", "visible");
+      }
+
+      //END FORM CODE
+    </script>
+</html>

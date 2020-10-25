@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Foodible</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="C:\Users\soumyasarang\.vscode\Food Website\stylesheet.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <style>
+          .jumbotron {
+            margin-top:50px;
+            height: 400px;
+            text-align: center;
+            color: white;
+            background-color: #990000;
+          }
+          .content{
+            margin: 30px;
+          }
+          .col-4{
+            outline-color: #990000;
+            outline-width: 3px;
+            outline-style: solid;
+            padding-top: 20px;
+            background-color: #ffcccc;
+            align-items: center;
+            text-align: center;
+          }
+          label {
+            display: flex;
+          }
+          #addrow {
+            margin-top: 10px;
+          }
+
+          .material-icons.md-48 { 
+            font-size: 96px; 
+            color: rgba(128, 0, 0); 
+          }
+
+        </style>
+    </head>
+    <body>
+        <!--ALL NAVBAR CODE-->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Foodible</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/restaurantlist">All Restaurants</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pantrylist">All Food Pantries</a>
+                  </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Get Involved
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/addrestaurant">I'm a Restaurant Owner</a>
+                    <a class="dropdown-item" href="/addpantry">I manage a Food Pantry</a>
+                    <a class="dropdown-item" href="/volunteer">I want to Volunteer</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!--END OF NAVBAR CODE-->
+          <!--HEADER-->
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">Foodible</h1>
+              <p class="lead">Ending hunger by eliminating food waste</p>
+            </div>
+          </div>
+          <!--END OF HEADER-->
+          <!--START OF CONTENT-->
+          <div class=content>
+            <div class="row">
+                <div class="col-8">
+                    <h1>What is Foodible?</h1>
+                    <p>Here’s some food for thought. Every year, the United States discards approximately 40 million tons of food. That’s around 80 billion pounds, and equates to more than $161 billion in total. However, in the United States, according to the USDA’s latest Household Food Insecurity report, there are over 35 million people and 14.3 million households with limited access to food. This is the shocking disparity in American communities.</p>
+                    <p>Foodible strives to combat this disparity, by simultaneously ending food insecurity and food waste. Foodible creates networks between restaurants that have a lot of leftover food, food pantries that are in desperate need of, and volunteers who are willing to help deliver from restaurant to pantry. Through these networks as well as the kindness of people, we can not only end food waste and food insecurity, but we can create stronger communities as well.</p>
+                    <br></br>
+                    <h1>How can I Contribute?</h1>
+                    <h2>Restaurants</h2>
+                    <span><h4>Step One: </h4><p>Fill out all of the necessary fields in the form for restaurants. Include as many available items as you can, and make sure you keep them available after you fill out the form as well.</p></span>
+                    <span><h4>Step Two: </h4><p>Now, all you have to do is wait! Your restaurant with the information you have filled out will appear on our public database, which prospective volunteers will be able to see. When a volunteer registers to deliver food from your restaurant, you will be notified, and you can keep your leftovers ready at the specified time for delivery.</p></span>
+                    <span><h4>Step Three: </h4><p>You’ve just contributed to a wonderful cause, and you’ve taken a key step to reducing food waste in restaurants! We’re proud of you!</p></span>
+                    <br></br>
+                    <h2>Food Pantries</h2>
+                    <span><h4>Step One: </h4><p>Fill out all of the necessary fields in the form for food pantries. Include as many items you need as you can, in order to increase the amount of food that your pantry gets!</p></span>
+                    <span><h4>Step Two: </h4><p>Now, just hang tight! Your pantry with the information you have filled out will appear on our public database, which prospective volunteers will be able to see. When a volunteer registers to deliver food to your pantry, you will be notified, and you can get ready at the specified time to accept food from the volunteer!</p></span>
+                    <span><h4>Step Three: </h4><p>You’ve always contributed to a wonderful cause, and we’re proud of the work you do. Now, you have taken your service to the next level! You will be able to feed more people who are food insecure, and put an end to food insecurity once and for all. Keep up the wonderful work!</p></span>
+                    <br></br>
+                    <h2>Volunteers</h2>
+                    <span><h4>Step One: </h4><p>Fill out your personal information in the form for volunteers.</p></span>
+                    <span><h4>Step Two: </h4><p>Based on the information that you filled out, we will compile a list of food pantries and restaurants near you, so you don’t have to! Select a food pantry that you want to deliver to, and the restaurant that you will deliver from. Then, choose the dates and times when you will pick up and deliver the food!</p></span>
+                    <span><h4>Step Three: </h4><p>You will be notified once your registration is submitted, and the restaurant and food pantry you have chosen will be notified of your registration as well. On the day and time that you specified, pull up your car and take a trip from the restaurant to the food pantry! Through this trip, you will help combat food insecurity and food waste.</p></span>
+                    <span><h4>Step Four: </h4><p>Deliver the food, and give yourself a pat on the back! We’re proud of you!</p></span>
+                    <br></br>
+
+                </div>
+                    <div class="col-4">
+                <h1>A Few Stats</h1>
+                <br></br>
+                <span class="material-icons md-48">fastfood</span>
+                <h2>40,000,000</h2>
+                <p>The amount of food wasted by the US annually, in tons</p>
+                <button type="button" class="btn btn-outline-danger btn-block" href="/addrestaurant">...but you can help! Add your restaurant!</button>
+                <br></br>
+                <span class="material-icons md-48">local_pizza</span>
+                <h2>35,000,000</h2>
+                <p>The number of people that go hungry in the US</p>
+                <button type="button" class="btn btn-outline-danger btn-block" href="/addpantry">...but you can help! Add your pantry!</button>
+                <button type="button" class="btn btn-outline-danger btn-block" href="/volunteer">...or become a Volunteer!</button>
+              </div>
+              </div>
+        </div>
+    </body>
+</html>

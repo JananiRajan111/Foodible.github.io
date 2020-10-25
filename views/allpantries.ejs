@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Foodible</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="C:\Users\soumyasarang\.vscode\Food Website\public\stylesheet.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <style>
+          .jumbotron {
+            margin-top:50px;
+            height: 400px;
+            text-align: center;
+            color: white;
+            background-color: #990000;
+          }
+          .content{
+            margin: 30px;
+          }
+          .col-4{
+            outline-color: #990000;
+            outline-width: 3px;
+            outline-style: solid;
+            padding-top: 20px;
+            background-color: #ffcccc;
+            align-items: center;
+            text-align: center;
+          }
+          label {
+            display: flex;
+          }
+          #addrow {
+            margin-top: 10px;
+          }
+
+        </style>
+    </head>
+    <body>
+        <!--ALL NAVBAR CODE-->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Foodible</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/restaurantlist">All Restaurants </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/pantrylist">All Food Pantries<span class="sr-only">(current)</span></a>
+                  </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Get Involved
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/addrestaurant">I'm a Restaurant Owner</a>
+                    <a class="dropdown-item" href="/addpantry">I manage a Food Pantry</a>
+                    <a class="dropdown-item" href="/volunteer">I want to Volunteer</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!--END OF NAVBAR CODE-->
+          <!--HEADER-->
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">Foodible</h1>
+              <p class="lead">Ending hunger by eliminating food waste</p>
+            </div>
+          </div>
+          <!--END OF HEADER-->
+          <!--MAIN CONTENT-->
+          <div class="content">
+            <h2>Search for a Pantry</h2>
+            <!--search bar-->
+          <form action="/searchpantries" method="GET">
+            <div class="input-group mb-3">
+              <input name="searchbar"type="text" class="form-control" placeholder="Enter city" aria-label="Enter city" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-danger" type="button">Search</button>
+              </div>
+            </div>
+          </form>
+          <!--end search bar-->
+          <!--Start database data-->
+          <div class="card-deck">
+          <% for(var i = 0; i < pantries.length; i++) {%>
+            <div class="col-3">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+              <h5 class="card-title"><%= pantries[i].name %></h2>
+              <!-- Button to Open the Modal -->
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target= #<%= pantries[i].name %> >
+                Details
+              </button>
+            
+              <!-- The Modal -->
+              <div class="modal" id= <%= pantries[i].name %>>
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title"><%= pantries[i].name %></h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    <ul>
+                      <li>Email: <span><%= pantries[i].email %></span></li>
+                      <li>Address: <span><%= pantries[i].address %></span>, <span><%= pantries[i].city %></span> <span><%= pantries[i].state %></span>, <span><%= pantries[i].zip %></span></li>
+                      <li>Items Needed:
+                        <ul>
+                          <% for(var j = 0; j < (pantries[i].item).length; j++) {%>
+                            <li><%= pantries[i].item[j] %></li> 
+                          <% } %>
+                        </ul>
+                      </li>
+                    </ul>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+          <!--End database data-->
+        </div>
+      <!--END MAIN CONTENT-->
+
+    </body>
+</html>
